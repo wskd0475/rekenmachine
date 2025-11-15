@@ -1,26 +1,15 @@
 <?php
-// Simple Calculator (with Functions)
+
 echo "Simple Calculator (with Functions)\n";
 
-/**
- * Toont de prompt en retourneert de invoer als float.
- */
 function getNumber(string $prompt): float {
     return (float)readline($prompt);
 }
 
-/**
- * Vraagt de gebruiker om een operatie en retourneert deze.
- */
 function getOperation(): string {
-    // trim() verwijdert spaties voor/na de invoer.
     return trim(readline("Enter operation (+, -, *, /): "));
 }
 
-/**
- * Voert de berekening uit op basis van de invoer.
- * Retourneert het resultaat (getal) of een foutmelding (string).
- */
 function calculate(float $num1, float $num2, string $operation): float|string {
     switch ($operation) {
         case '+':
@@ -40,12 +29,24 @@ function calculate(float $num1, float $num2, string $operation): float|string {
     }
 }
 
-// --- Hoofdprogramma ---
+while (true) { 
 
-$num1 = getNumber("Enter first number: ");
-$operation = getOperation();
-$num2 = getNumber("Enter second number: ");
+    $num1 = getNumber("Enter first number: ");
+    $operation = getOperation();
+    $num2 = getNumber("Enter second number: ");
 
-$result = calculate($num1, $num2, $operation);
+    $result = calculate($num1, $num2, $operation);
 
-echo "Result: $result\n"; 
+    echo "Result: $result\n";
+
+    echo "\n----------------------------------\n";
+    $antwoord = readline("Wilt u nog een berekening maken? (ja/nee): ");
+
+    if (trim(strtolower($antwoord)) !== 'ja') {
+        break; 
+    }
+}
+
+echo "\nBedankt voor het gebruiken van de rekenmachine. Tot ziens!\n";
+
+?>
